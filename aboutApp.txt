@@ -1,0 +1,3 @@
+1. fake data from "http://jsonplaceholder.typicode.com/"
+2.  use /posts and /users of Resource in this page.
+
