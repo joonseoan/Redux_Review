@@ -1,19 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUser } from '../actions';
+// it is not necessary sice we used fetchPostAndUder()!!!
+// import { fetchUser } from '../actions';
 
 class UserHeader extends React.Component {
 
-    componentDidMount() {
-        this.props.fetchUser(this.props.userId)
-        
-    }
+    // 3) The third invoked
+    // componentDidMount() {
 
+    //     // console.log('componentDidMount')
+    //     this.props.fetchUser(this.props.userId)
+        
+    //}
+
+    //2) The second invoked 
     render() {
 
+        //console.log('render')
+
         // not effective way
-        console.log(this.props.user)
+        // console.log(this.props.user)
         // const user = this.props.users
         //    .find(user => user.id === this.props.userId);
         
@@ -23,12 +30,21 @@ class UserHeader extends React.Component {
         return(<div className="header">{ this.props.user.name }</div>);
     }
 }
-// MUST KNOW ownProps. It can pull out props of the component
-// We can minimize the amount of data to be rendered in the browser
-//  by using "ownProps"
-// Then we can render the data in the component above.
+
+// 1) The first invoked because connect is first invoked adn then mapstateToProps executes.
+// MUST KNOW ownProps. It can pull out props of the component, BTW.
+
+// In react component, we can minimize the amount of data to be rendered in the browser
+//  by filtering out the unnecessary data before reducer value is going into the react!!!
+
+// If the all data is landing in the react, and it is filtered out in the react
+//  the performance issue will be generated.
 function mapStateToProps({ users }, ownProps) {
+    // fetching the data before the second rendering
+
+    // console.log('mapStateToProps')
     return { user: users.find(user => user.id === ownProps.userId) };
 }
 
-export default connect(mapStateToProps, { fetchUser })(UserHeader);
+// Frist run!!!
+export default connect(mapStateToProps)(UserHeader);

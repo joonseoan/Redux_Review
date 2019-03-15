@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect  } from 'react-redux';
 
-import { fetchPosts } from '../actions';
+import { fetchPostAndUsers } from '../actions';
 import UserHeader from './UserHeader';
 
 class PostList extends React.Component {
 
     componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchPostAndUsers();
     }
 
     renderList() {
@@ -26,6 +26,7 @@ class PostList extends React.Component {
     }
     
     render() {
+        
         // ############### important.****************************************8
         // We will have two reducers.
         // Once the application is loaded into the browser by "render()",
@@ -38,7 +39,7 @@ class PostList extends React.Component {
         // Then, at the second rendering by "componentDidMount", the action.type will have the value.
 
         // Therefore, at the initial time, reducer will return the default value of state!!!!!!
-        console.log(this.props.posts)
+        // console.log(this.props.posts)
         return (<div className="ui relaxed divided list">
             { this.renderList() }
         </div>);
@@ -49,7 +50,7 @@ function mapStateToProps({ posts }) {
     return { posts };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPostAndUsers })(PostList);
 
 
 
