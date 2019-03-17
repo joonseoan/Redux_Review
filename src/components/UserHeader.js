@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// it is not necessary sice we used fetchPostAndUder()!!!
+// it's not been necessary since we used fetchPostAndUder()!!!
 // import { fetchUser } from '../actions';
 
 class UserHeader extends React.Component {
@@ -17,22 +17,20 @@ class UserHeader extends React.Component {
     //2) The second invoked 
     render() {
 
-        //console.log('render')
+        if(!this.props.user) return <div />;
+        console.log('UserHeader')
 
         // not effective way
         // console.log(this.props.user)
         // const user = this.props.users
         //    .find(user => user.id === this.props.userId);
-        
-        
-        if(!this.props.user) return null;
-        
+                
         return(<div className="header">{ this.props.user.name }</div>);
     }
 }
 
 // 1) The first invoked because connect is first invoked adn then mapstateToProps executes.
-// MUST KNOW ownProps. It can pull out props of the component, BTW.
+// MUST KNOW ownProps. It can pull out props of the component, BTW. ********************8
 
 // In react component, we can minimize the amount of data to be rendered in the browser
 //  by filtering out the unnecessary data before reducer value is going into the react!!!
